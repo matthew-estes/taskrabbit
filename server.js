@@ -28,15 +28,12 @@ app.use(
   })
 );
 
-// app.get('/', (req, res) => {
-//   res.render('index.ejs', {
-//     user: req.session.user,
-//   });
-// });
+app.get('/', (req, res) => {
+  res.render('index.ejs', {
+    user: req.session.user,
+  });
+});
 
-app.get('/', async function(req, res){
-  res.send("hello, friend");
-})
 
 
 
