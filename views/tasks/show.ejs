@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,10 +11,11 @@
     <% if (task.description) { %>
     <p>Description: <%= task.description %></p>
     <% } %>
-    <p><%= task.category %></p>
-    <p><%= task.isHighPriority %></p>
-    <p><%= task.dueDate %></p>
-    <p><%= task.status %></p>
+    <p>Category: <%= task.category %></p>
+    <p>Priority Level: <%= task.isHighPriority %></p>
+    <p>Due Date: <%= new Date(task.dueDate).toLocaleDateString('en-US', { month:
+            'short', day: 'numeric' }) %></p>
+    <p>Status: <%= task.status %></p>
 
     <a href="/users/<%= user._id %>/tasks/<%= task._id %>/edit"
       >Edit this Task</a
