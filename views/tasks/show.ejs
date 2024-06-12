@@ -1,0 +1,29 @@
+!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= task.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= task.name %></h1>
+    <% if (task.description) { %>
+    <p>Description: <%= task.description %></p>
+    <% } %>
+    <p><%= task.category %></p>
+    <p><%= task.isHighPriority %></p>
+    <p><%= task.dueDate %></p>
+    <p><%= task.status %></p>
+
+    <a href="/users/<%= user._id %>/tasks/<%= task._id %>/edit"
+      >Edit this Task</a
+    >
+    <form
+      action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE"
+      method="POST"
+    >
+      <button type="submit">Delete this task</button>
+    </form>
+  </body>
+</html>

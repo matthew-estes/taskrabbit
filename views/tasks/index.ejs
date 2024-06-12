@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Tasks</title>
+    <title>Tasks</title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
@@ -23,7 +23,9 @@
       <tbody>
         <% tasks.forEach(task => { %>
         <tr>
-          <td><%= task.name %></td>
+          <td>
+          <a href="/users/<%= user._id %>/tasks/<%= task._id %>"><%= task.name %> </a>
+          </td>
           <td><%= task.category %></td>
           <td><%= task.isHighPriority %></td>
           <td>

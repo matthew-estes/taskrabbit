@@ -18,7 +18,7 @@
       <input type="text" name="category" id="category" />
 
       <label for="isHighPriortiy">High Priority:</label>
-      <input type="checkbox" name="isHighPriortiy" id="isHighPriortiy" />
+      <input type="checkbox" name="isHighPriortiy" <% if (task.isHighPriority) { %>checked<% } %> />
 
       <label for="dueDate">Due Date:</label>
       <input type="date" name="dueDate" id="dueDate" />
