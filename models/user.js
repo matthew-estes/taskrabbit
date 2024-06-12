@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
   category: { type: String, required: true },
-  isHighPriority: { type: Boolean, required: true },
+  isHighPriority: { type: Boolean },
   dueDate: { type: Date, required: true },
   status: {
     type: String,
@@ -25,7 +25,6 @@ const userSchema = mongoose.Schema({
   tasks: [taskSchema],
 });
 
-const User = mongoose.model('User', userSchema);
-
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
