@@ -24,7 +24,7 @@
       <textarea
         name="description"
         id="description"
-        value="<%= task.name %>"
+        value="<%= task.description %>"
       ></textarea>
       <label for="category">Category:</label>
       <input
@@ -42,17 +42,17 @@
         type="date"
         name="dueDate"
         id="dueDate"
-        value="<%= task.dueDate%>"
+        value="<%= task.dueDate.toISOString().split('T')[0] %>"
         required
       />
       <label for="status">Status:</label>
       <select name="status" id="status" required>
         
-        <option value="Not Started" <%= task.status === 'Not Started' ? 'selected' : '' %>>Not Started</option>
+        <option value="Not Started" <%= task.status === 'Not Started' ? 'selected' : '' %> >Not Started</option>
         <option value="In Progress"<%= task.status === "In Progress" ? 'selected' : '' %> >In Progress</option>
-        <option value="Completed"<%= task.status === "Completed" ? 'selected' : '' %>>Completed</option>
-        <option value="On Hold"<%= task.status === "On Hold" ? 'selected' : '' %>>On Hold</option>
-        <option value="Cancelled"<%= task.status === "Cancelled" ? 'selected' : '' %>>Cancelled</option>
+        <option value="Completed"<%= task.status === "Completed" ? 'selected' : '' %> >Completed</option>
+        <option value="On Hold"<%= task.status === "On Hold" ? 'selected' : '' %> >On Hold</option>
+        <option value="Cancelled"<%= task.status === "Cancelled" ? 'selected' : '' %> >Cancelled</option>
       </select>
       <button type="submit">Submit</button>
     </form>
