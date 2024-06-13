@@ -24,13 +24,15 @@
         <% tasks.forEach(task => { %>
         <tr>
           <td>
-          <a href="/users/<%= user._id %>/tasks/<%= task._id %>"><%= task.name %> </a>
+            <a href="/users/<%= user._id %>/tasks/<%= task._id %>"
+              ><%= task.name %>
+            </a>
           </td>
           <td><%= task.category %></td>
           <td><%= task.isHighPriority %></td>
           <td>
             <%= new Date(task.dueDate).toLocaleDateString('en-US', { month:
-            'short', day: 'numeric' }) %>  
+            'short', day: 'numeric' }) %>
           </td>
           <td><%= task.status %></td>
         </tr>
