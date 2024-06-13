@@ -42,7 +42,7 @@
         type="date"
         name="dueDate"
         id="dueDate"
-        value="<%= task.dueDate.toISOString().split('T')[0] %>"
+        value="<%= (task.dueDate).toISOString().split('T')[0] %>"
         required
       />
       <label for="status">Status:</label>

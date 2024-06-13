@@ -49,7 +49,7 @@
           <td><%= task.isHighPriority ? 'Yes' : 'No' %></td>
           <td>
             <%= new Date(task.dueDate).toLocaleDateString('en-US', { month:
-            'short', day: 'numeric' }) %>
+            'short', day: 'numeric', timeZone: 'UTC' }) %>
           </td>
           <td><%= task.status %></td>
         </tr>
