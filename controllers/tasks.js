@@ -20,6 +20,7 @@ async function create(req, res) {
   try {
     console.log(req.session.user);
     const foundUser = await User.findById(req.session.user._id);
+    req.body.isHighPriority = req.body.isHighPriority === 'on';
     foundUser.tasks.push(req.body);
     await foundUser.save();
     res.redirect(`/users/${foundUser._id}/tasks`);
