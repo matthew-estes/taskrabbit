@@ -57,7 +57,7 @@ async function edit(req, res){
   try {
     const currentUser = await User.findById(req.session.user._id);
     const task = currentUser.tasks.id(req.params.taskId); 
-    res.render('tasks.edit.ejs', { task });
+    res.render('tasks/edit.ejs', { task });
   } catch (error) {
     console.log(error);
     res.redirect('/');
