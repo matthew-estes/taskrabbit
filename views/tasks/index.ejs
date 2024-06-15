@@ -1,20 +1,17 @@
-<!-- views/applications/index.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tasks</title>
-    <style>
-      div {
-        margin-top: 50px;
-      }
-    </style>
+    
   </head>
   <body>
-    <%- include('../partials/_navbar.ejs') %>
-    <h1>Your Tasks</h1>
+    <%- include('../partials/_navbar.ejs') %> 
+    
+    <h1>Hello <%= user.username%></h1>
+
+    <h2>Here are your Current Tasks:</h2>
     <table>
       <thead>
         <tr>
@@ -47,6 +44,5 @@
     <div>
       <a href="/users/<%=user._id%>/tasks/new">Add a New Task</a>
     </div>
-  
   </body>
 </html>
