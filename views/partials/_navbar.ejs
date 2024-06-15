@@ -3,6 +3,7 @@
 <nav>
   <% if(user) { %>
   <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
+  <a href="/users/<%=user._id%>/tasks/pwreset">Reset Your Password</a>
   <a href="/auth/sign-out">Sign Out</a>
   <% } else { %>
   <a href="/auth/sign-in">Sign In</a>
