@@ -4,37 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
-    <!-- <style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+      body{
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+      }
       .container1 {
+        padding-top: 4rem;
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: auto;
+        text-align: center;
       }
-      a {
-        padding: 1rem;
+
+      .container1 img {
+        max-width: 50%;
+        height: auto;
+        margin-bottom: 1rem;
       }
+  
       .container2 {
         display: flex;
         justify-content: center;
-        align-items: center;
+        gap: 2rem;
+      
       }
-      .container2 img {
-        max-width: 50%;
-        height: auto;
-      }
-    </style> -->
+
+    </style>
   </head>
   <body>
-    <!-- <div class="container1">
-      <a href="/auth/sign-in">Sign In</a>
-      <h1>Welcome to Task Rabbit</h1>
-      <a href="/auth/sign-up">Sign Up</a>
+    <div class="container1">
+      <img src="/views/images/taskrabbitlogo.png" alt="Rabbit">
     </div>
-    <div class="container2"> -->
-      <img src="/views/images/rabbit.jpg" alt="Rabbit">
-     
+    <div class="container2">
+      <a href="/auth/sign-in">Sign In</a>
+      <a href="/auth/sign-up">Sign Up</a>
     </div>
   </body>
 </html>
