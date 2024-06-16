@@ -32,6 +32,7 @@ app.use(
 
 app.use(passUserToView);
 app.set('view engine', 'ejs');
+app.use('/views/images', express.static('views/images'));
 
 app.get("/", (req, res) => {
   if (req.session.user) {
