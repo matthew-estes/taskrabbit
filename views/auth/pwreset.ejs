@@ -1,1 +1,24 @@
-<h1>Hello world</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>   
+    <h1>Reset Password</h1>
+<form action="/auth/reset" method="POST">
+    <label for="newPassword">New Password:</label>
+    <input type="password" name="password" id="password" required />
+    <label for="confirmPassword">Confirm Password:</label>
+    <input
+      type="password"
+      name="confirmPassword"
+      id="confirmPassword"
+      required
+    />
+    <button type="submit">Sign up</button>
+  </form>
+</body>
+</html>

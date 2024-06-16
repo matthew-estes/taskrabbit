@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user.js");
 const isSignedIn = require('../middleware/is-signed-in.js')
+const authController = require("../controllers/auth.js");
 
 router.get("/sign-up", (req, res) => {
   res.render("auth/sign-up.ejs");
@@ -79,7 +80,7 @@ router.post("/sign-in", async (req, res) => {
 
 
 async function showPwReset(req, res){
-  res.render('auth/reset')
+  res.render('auth/pwreset')
 }
 
 async function resetPw(req, res) {
@@ -88,7 +89,7 @@ async function resetPw(req, res) {
   if (req.body.password !== req.body.confirmPassword) {
     return res.send("Password and Confirm Password must match")
   }
-  const User = await User.findById(req.session.user._id);
+  const user = await User.findById(req.session.user._id);
   const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
     await User.save();
@@ -99,9 +100,8 @@ async function resetPw(req, res) {
   }
 };
 
-
-
-
+router.get('/reset', isSignedIn, authController.showPwReset);
+router.post('/reset', isSignedIn, authController.resetPw);
 
 
 module.exports = router;

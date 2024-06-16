@@ -11,7 +11,6 @@ router.get("/:taskId", taskCtrl.show);
 router.delete('/:taskId', taskCtrl.delete);
 router.get('/:taskId/edit', taskCtrl.edit);
 router.put('/:taskId', taskCtrl.update);
-router.get('/reset', isSignedIn, authController.showPwReset);
-router.post('/reset', isSignedIn, authController.resetPw)
+
 
 module.exports = router;

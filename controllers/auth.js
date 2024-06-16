@@ -1,10 +1,9 @@
-const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/user.js");
 
 
 async function showPwReset(req, res){
-  res.render('auth/reset')
+  res.render('auth/pwreset')
 }
 
 async function resetPw(req, res) {
@@ -23,7 +22,6 @@ async function resetPw(req, res) {
     return res.send ('Reset failed. Please try again.')
   }
 };
-
 
 
 
