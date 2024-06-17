@@ -42,6 +42,7 @@ app.get("/", (req, res) => {
   }
 });
 
+
 app.use("/auth", require('./routes/auth.js'));
 app.use(isSignedIn); // add here
 app.use("/users/:userId/tasks", require("./routes/tasks.js"));
