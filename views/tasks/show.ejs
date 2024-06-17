@@ -4,85 +4,134 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= task.name %></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    />
     <style>
-    body {
-      font-family: "Roboto", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+      }
+      nav {
+        text-align: center;
+      }
 
-    .task-format {
-      background-color: lightgray;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 60px;
-      width: 100%;
-      max-width: 600px;
-    }
+      nav a {
+        padding: 1rem;
+      }
 
-    .task-name {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 30px;
-      margin: 0;
-    }
+      .body {
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    .task-details {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 30px;
-    }
-    .task-details p {
-      margin: 5px 0;
-      font-size: 20px;
-    }
+      .task-format {
+        background-color: rgb(222, 219, 219);
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 60px;
+        width: 100%;
+        max-width: 600px;
+      }
 
-    .task-notes {
-      margin-bottom: 20px;
-    }
+      .task-name {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 30px;
+        margin: 0;
+      }
 
-    
+      .task-details {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        margin: 15px auto;
+      }
+      .task-details p {
+        margin: 5px 0;
+        font-size: 15px;
+      }
 
+      .task-notes {
+        margin-bottom: 20px;
+      }
+
+      .task-notes label {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+
+      .task-notes textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 15px;
+        border: 1px solid white;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 25px;
+      }
+      .buttons button {
+        border: none;
+        font-size: 15px;
+        background-color: #0077cc;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>
-    <div class="task-format">
-      <div class="task-name">
-        <h1 class="task-name"><%= task.name %></h1>
-      </div>
-      <div class="task-details">
-        <p class="task-category">Category: <%= task.category %></p>
-        <p class="task-priority">
-          Priority Level: <%= task.isHighPriority ? 'High' : 'Normal' %>
-        </p>
-        <p class="task-duedate">
-          Due Date: <%= new Date(task.dueDate).toLocaleDateString('en-US', {
-          month: 'short', day: 'numeric', timeZone: 'UTC' }) %>
-        </p>
-        <p class="task-status">Status: <%= task.status %></p>
-      </div>
-      <div class="task-notes">
-        <label for="notes">Notes Section:</label>
-        <textarea name="notes" id="notes" rows="4" cols="50">
+    <nav>
+      <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
+      <a href="/auth/reset">Reset Your Password</a>
+      <a href="/auth/sign-out">Sign Out</a>
+    </nav>
+    <div class="body">
+      <div class="task-format">
+        <div class="task-name">
+          <h1 class="task-name"><%= task.name %></h1>
+        </div>
+        <div class="task-details">
+          <p class="task-category">Category: <%= task.category %></p>
+          <p class="task-priority">
+            Priority Level: <%= task.isHighPriority ? 'High' : 'Normal' %>
+          </p>
+          <p class="task-duedate">
+            Due Date: <%= new Date(task.dueDate).toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', timeZone: 'UTC' }) %>
+          </p>
+          <p class="task-status">Status: <%= task.status %></p>
+        </div>
+        <div class="task-notes">
+          <label for="notes">Notes Section:</label>
+          <textarea name="notes" id="notes">
 <%= task.description ? task.description : '' %></textarea
-        >
-      </div>
-      <div class="buttons">
-        <button
-          onclick="window.location.href='/users/<%= user._id %>/tasks/<%= task._id %>/edit'"
-        >
-          Edit this Task
-        </button>
-        <form
-          action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE"
-          method="POST"
-        >
-          <button type="submit">Delete this Task</button>
-        </form>
+          >
+        </div>
+        <div class="buttons">
+          <button
+            onclick="window.location.href='/users/<%= user._id %>/tasks/<%= task._id %>/edit'"
+          >
+            Edit this Task
+          </button>
+          <form
+            action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button type="submit">Delete this Task</button>
+          </form>
+        </div>
       </div>
     </div>
   </body>
