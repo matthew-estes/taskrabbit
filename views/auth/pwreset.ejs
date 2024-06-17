@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reset Password</title>
     <style>
-       body {
+      body {
         font-family: "Roboto", Arial, sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-       }
+      }
 
-       .logo {
+      .logo {
         padding-top: 4rem;
         display: flex;
         justify-content: center;
@@ -24,56 +24,70 @@
         height: auto;
         margin-bottom: 1rem;
       }
-       
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label{
-    margin: 5px 0;
-    }
 
-    input {
-      margin-bottom: 15px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin: 5px 0;
+      }
 
-    button {
-      padding: 10px;
-      background-color: #0077cc;
-      border: none;
-      border-radius: 5px;
-      color: whitesmoke;
-      font-size: 20px;
-      cursor: pointer;
-      margin-top: 15px;
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
-    <%- include('../partials/_navbar.ejs') %>   
+      input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #0077cc;
+        border: none;
+        border-radius: 5px;
+        color: whitesmoke;
+        font-size: 20px;
+        cursor: pointer;
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+      nav {
+        text-align: center;
+      }
+      
+      nav a {
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
+      <a href="/auth/reset">Reset Your Password</a>
+      <a href="/auth/sign-out">Sign Out</a>
+    </nav>
+
     <div class="logo">
-      <img src="/views/images/white-taskrabbitlogo.png" 
-      data-light-src="/views/images/white-taskrabbitlogo.png"
-      data-dark-src="/views/images/black-taskrabbitlogo.png"
-      alt="rabbit"
-      id="logo" />
-     </div>
-    <h1>Reset Password</h1>
-<form action="/auth/reset" method="POST">
-    <label for="newPassword">New Password:</label>
-    <input type="password" name="password" id="password" required />
-    <label for="confirmPassword">Confirm Password:</label>
-    <input
-      type="password"
-      name="confirmPassword"
-      id="confirmPassword"
-      required
-    />
-    <button type="submit">Sign up</button>
-  </form>
-</body>
+      <img
+        src="/views/images/white-taskrabbitlogo.png"
+        data-light-src="/views/images/white-taskrabbitlogo.png"
+        data-dark-src="/views/images/black-taskrabbitlogo.png"
+        alt="rabbit"
+        id="logo"
+      />
+    </div>
+    <!-- <h1>Reset Password</h1> -->
+    <form action="/auth/reset" method="POST">
+      <label for="newPassword">New Password:</label>
+      <input type="password" name="password" id="password" required />
+      <label for="confirmPassword">Confirm Password:</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        required
+      />
+      <button type="submit">Update</button>
+    </form>
+  </body>
 </html>

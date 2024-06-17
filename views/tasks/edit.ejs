@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Task %></title>
-   
+   <style>
+     body {
+        font-family: "Roboto", Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+       nav {
+        text-align: center;
+      }
+      
+      nav a {
+        padding: 1rem;
+      }
+   </style>
   </head>
   <body>
-    <%- include('../partials/_navbar.ejs') %>
+    <nav>
+      <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
+      <a href="/auth/reset">Reset Your Password</a>
+      <a href="/auth/sign-out">Sign Out</a>
+    </nav>
     <h1>Edit <%= task.name %></h1>
     <form
       action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=PUT"

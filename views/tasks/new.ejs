@@ -50,11 +50,23 @@
         margin-top: 15px;
         margin-bottom: 20px;
       }
+      nav {
+        text-align: center;
+      }
+      
+      nav a {
+        padding: 1rem;
+      }
 
     </style>
   
   </head>
   <body>
+    <nav>
+      <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
+      <a href="/auth/reset">Reset Your Password</a>
+      <a href="/auth/sign-out">Sign Out</a>
+    </nav>
     <h1>Create a Task</h1>
     <form action="/users/<%=user._id %>/tasks" method="POST">
       <label for="name">Task Name:</label>

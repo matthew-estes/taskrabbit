@@ -8,13 +8,54 @@
       rel="stylesheet"
     />
     <title>Tasks</title>
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      h1, p {
+        text-align: center;
+    
+      }
+      table {
+        width: 70%;
+        margin: 1rem auto;
+        border-collapse: collapse;
+        background-color: lightgray;
+      }
+      table thead { 
+        background-color: #0077cc;
+        letter-spacing: 0.1rem;
+      }
+
+      table th, table td {
+        text-align: left;
+        padding: .5rem;
+      
+      }
+      table th {
+        color: #fff;
+      }
+      
+      nav {
+        text-align: center;
+      }
+      
+      nav a {
+        padding: 1rem;
+      }
+    
+    </style>
   </head>
   <body>
-    <%- include('../partials/_navbar.ejs') %>
-
+  <nav>
+    <a href="/users/<%=user._id%>/tasks/new">Add a New Task</a>
+    <a href="/auth/reset">Reset Your Password</a>
+    <a href="/auth/sign-out">Sign Out</a>
+  </nav>
     <h1>Hello <%= user.username%></h1>
-
-    <h2>Here are your Current Tasks:</h2>
+    <p>Here are your Current Tasks:</p>
     <table>
       <thead>
         <tr>
@@ -44,8 +85,5 @@
         <% }) %>
       </tbody>
     </table>
-    <div>
-      <a href="/users/<%=user._id%>/tasks/new">Add a New Task</a>
-    </div>
   </body>
 </html>
