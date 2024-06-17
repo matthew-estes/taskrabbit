@@ -9,10 +9,12 @@
         font-family: "Roboto", Arial, sans-serif;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         text-align: center;
       }
+
+      
+
       nav {
         text-align: center;
       }
@@ -29,7 +31,7 @@
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
     <h1><%= task.name %></h1>
-    <ul>
+    <ul id="taskSummary">
       <% if (task.description) { %>
       <li>Description: <%= task.description %></li>
       <% } %>

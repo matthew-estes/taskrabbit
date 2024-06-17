@@ -1,15 +1,5 @@
 const mongoose = require("mongoose");
 
-// const subTaskSchema = mongoose.Schema({
-//   name: { type: String, required: true },
-//   description: { type: String },
-//   dueDate: { type: Date, required: true },
-//   status: {
-//     type: String,
-//     enum: ["Not Started", "In Progress", "Completed"],
-//     required: true,
-//   },
-// });
 
 const taskSchema = mongoose.Schema({
   name: { type: String, required: true },
@@ -22,7 +12,7 @@ const taskSchema = mongoose.Schema({
     enum: ["Not Started", "In Progress", "Completed", "On Hold"],
     required: true,
   },
-  // subTasks: [subTaskSchema],
+
 });
 
 const userSchema = mongoose.Schema({
