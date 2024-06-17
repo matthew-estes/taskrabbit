@@ -3,78 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Task %></title>
+    <title>Edit Task</title>
    <style>
-     body {
-        font-family: "Roboto", Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    body {
+      font-family: "Roboto", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+      nav {
         text-align: center;
       }
-
-      h1 {
-        margin-bottom: 20px;
-      }
-      form {
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 500px;
-      }
-      label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
-      input[type="text"], input[type="date"], textarea, select {
-        width: 100%;
-        max-width: 600px;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        text-align: center;
-      }
-    
-
-      textarea {
-        height: 150px,
-      }
-      input[type="checkbox"] {
-        margin-right: 10px;
-      }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       nav {
-        text-align: center;
-      }
-    
       nav a {
         padding: 1rem;
       }
+      h1 {
+      text-align: center;
+      margin-top: 3%;
+    }
+    form {
+      background-color: rgb(222, 219, 219);
+      border-radius: 10px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="checkbox"] {
+      transform: scale(3);
+      margin: 5px 0 15px 15px;
+    }
+    button {
+      border: none;
+      font-size: 15px;
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
    </style>
   </head>
   <body>
@@ -83,7 +73,8 @@
       <a href="/auth/reset">Reset Your Password</a>
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
-    <h1>Edit <%= task.name %></h1>
+    <div class="edit-container"></div>
+    <h1>Edit Task</h1>
     <form
       action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=PUT"
       method="POST"
@@ -96,7 +87,7 @@
         value="<%= task.name %>"
         required
       />
-      <label for="description">Description:</label>
+      <label for="description">Notes:</label>
       <textarea
         name="description"
         id="description"
@@ -131,5 +122,6 @@
       </select>
       <button type="submit">Submit</button>
     </form>
+  </div>
   </body>
 </html>

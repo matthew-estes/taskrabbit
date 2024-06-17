@@ -22,20 +22,25 @@
 
       .body {
         font-family: "Roboto", Arial, sans-serif;
-        margin: 0;
+        margin-top: 30px;
         padding: 0;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
-
+      h1 {
+        margin-top: 30px;
+      }
       .task-format {
         background-color: rgb(222, 219, 219);
         border-radius: 10px;
-        padding: 30px;
-        margin-top: 60px;
+        padding: 20px;
+        margin-top: 20px;
         width: 100%;
         max-width: 600px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
       }
 
       .task-name {
@@ -49,11 +54,11 @@
         display: flex;
         justify-content: space-between;
         text-align: center;
-        margin: 15px auto;
+        margin: 0 auto 15px auto;
       }
       .task-details p {
         margin: 5px 0;
-        font-size: 15px;
+        font-size: 16px;
       }
 
       .task-notes {
@@ -69,7 +74,6 @@
       .task-notes textarea {
         width: 100%;
         padding: 10px;
-        margin-bottom: 10px;
         font-size: 15px;
         border: 1px solid white;
         border-radius: 4px;
@@ -80,14 +84,16 @@
         flex-direction: row;
         justify-content: center;
         gap: 25px;
+       
       }
       .buttons button {
         border: none;
-        font-size: 15px;
-        background-color: #0077cc;
-        color: white;
-        cursor: pointer;
-        border-radius: 4px;
+      font-size: 15px;
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 4px;
       }
     </style>
   </head>
@@ -98,10 +104,8 @@
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
     <div class="body">
-      <div class="task-format">
-        <div class="task-name">
-          <h1 class="task-name"><%= task.name %></h1>
-        </div>
+          <h1 class="task-name">Task Details: <%= task.name %></h1>
+        <div class="task-format">
         <div class="task-details">
           <p class="task-category">Category: <%= task.category %></p>
           <p class="task-priority">
