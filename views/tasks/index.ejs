@@ -46,13 +46,13 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="greeting()">
     <nav>
       <a href="/users/<%=user._id%>/tasks/new">Add a New Task</a>
       <a href="/auth/reset">Reset Your Password</a>
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
-    <h1>Hello <%= user.username%></h1>
+    <h1 id="greeting"><%= user.username%></h1>
     <p>Here are your Current Tasks:</p>
     <table id="taskTable">
       <thead>
@@ -83,6 +83,23 @@
         <% }) %>
       </tbody>
     </table>
+    <script>
+      function greeting() {
+        const greetingElement = document.getElementById("greeting");
+        const now = new Date();
+        const hour = now.getHours();
+        let greeting;
+
+        if (hour < 12) {
+          greeting = "Good Morning";
+        } else if (hour < 18) {
+          greeting = "Good Afternoon";
+        } else {
+          greeting = "Good Evening";
+        }
+        greetingElement.textContent = greeting + ", <%= user.username%>";
+      }
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
       type="text/javascript"
