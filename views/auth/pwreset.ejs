@@ -63,7 +63,6 @@
   <body>
     <nav>
       <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
-      <!-- <a href="/auth/reset">Reset Your Password</a> -->
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
 
@@ -72,11 +71,11 @@
         src="/views/images/white-taskrabbitlogo.png"
         data-light-src="/views/images/white-taskrabbitlogo.png"
         data-dark-src="/views/images/black-taskrabbitlogo.png"
-        alt="rabbit"
+        alt="rabbit logo"
         id="logo"
       />
     </div>
-    <!-- <h1>Reset Password</h1> -->
+  
     <form action="/auth/reset" method="POST">
       <label for="newPassword">New Password:</label>
       <input type="password" name="password" id="password" required />

@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", require("./routes/auth.js"));
-app.use(isSignedIn); // add here
+app.use(isSignedIn); 
 app.use("/users/:userId/tasks", require("./routes/tasks.js"));
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
