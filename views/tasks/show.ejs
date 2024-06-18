@@ -40,7 +40,6 @@
         width: 100%;
         max-width: 600px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
       }
 
       .task-name {
@@ -61,17 +60,17 @@
         font-size: 16px;
       }
 
-      .task-notes {
+      .task-description {
         margin-bottom: 20px;
       }
 
-      .task-notes label {
+      .task-description label {
         display: block;
         font-size: 15px;
         margin-bottom: 5px;
       }
 
-      .task-notes textarea {
+      .task-description textarea {
         width: 100%;
         padding: 10px;
         font-size: 15px;
@@ -84,16 +83,15 @@
         flex-direction: row;
         justify-content: center;
         gap: 25px;
-       
       }
       .buttons button {
         border: none;
-      font-size: 15px;
-      background-color: #0077cc;
-      color: white;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 4px;
+        font-size: 15px;
+        background-color: #0077cc;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 4px;
       }
     </style>
   </head>
@@ -104,22 +102,24 @@
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
     <div class="body">
-          <h1 class="task-name">Task Details: <%= task.name %></h1>
-        <div class="task-format">
+      <h1 class="task-name">Task Details: <%= task.name %></h1>
+      <div class="task-format">
         <div class="task-details">
           <p class="task-category">Category: <%= task.category %></p>
-          <p class="task-priority">
-            Priority Level: <%= task.isHighPriority ? 'High' : 'Normal' %>
-          </p>
+          <% if(task.isHighPriority){ %>
+          <p>High Priority: Yes</p>
+          <% } else { %>
+          <p>High Priority: No</p>
+          <% } %>
           <p class="task-duedate">
             Due Date: <%= new Date(task.dueDate).toLocaleDateString('en-US', {
             month: 'short', day: 'numeric', timeZone: 'UTC' }) %>
           </p>
           <p class="task-status">Status: <%= task.status %></p>
         </div>
-        <div class="task-notes">
-          <label for="notes">Notes Section:</label>
-          <textarea name="notes" id="notes">
+        <div class="task-description">
+          <label for="description">Description:</label>
+          <textarea name="description" id="description">
 <%= task.description ? task.description : '' %></textarea
           >
         </div>

@@ -88,12 +88,8 @@
         value="<%= task.name %>"
         required
       />
-      <label for="description">Notes:</label>
-      <textarea
-        name="description"
-        id="description"
-        value="<%= task.description %>"
-      ></textarea>
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" rows="4"><%= task.description %></textarea>
       <label for="category">Category:</label>
       <input
         type="text"
@@ -103,8 +99,7 @@
         required
       />
       <label for="isHighPriority">High Priority:</label>
-      <input type="checkbox" name="isHighPriority" id="isHighPriority" <%=
-      task.isHighPriority ? 'Yes' : 'No' %>/>
+      <input type="checkbox" name="isHighPriority" <% if (task.isHighPriority) { %>checked<% } %> >
       <label for="dueDate">Due Date:</label>
       <input
         type="date"

@@ -53,14 +53,14 @@ async function deleteTask(req, res) {
   }
 }
 
-async function edit(req, res){
+async function edit(req, res) {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    const task = currentUser.tasks.id(req.params.taskId); 
-    res.render('tasks/edit.ejs', { task });
+    const task = currentUser.tasks.id(req.params.taskId);
+    res.render("tasks/edit.ejs", { task });
   } catch (error) {
     console.log(error);
-    res.redirect('/');
+    res.redirect("/");
   }
 }
 
@@ -68,9 +68,10 @@ async function update(req, res) {
   try {
     const currentUser = await User.findById(req.session.user._id);
     const task = currentUser.tasks.id(req.params.taskId);
+    req.body.isHighPriority = req.body.isHighPriority === "on";
     task.set(req.body);
     await currentUser.save();
-    res.redirect(`/users/${currentUser_id}/tasks/${req.params.taskId}`);
+    res.redirect(`/users/${currentUser._id}/tasks`);
   } catch (error) {
     console.log(error);
     res.redirect("/");

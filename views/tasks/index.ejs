@@ -39,6 +39,11 @@
         color: #fff;
       }
 
+      table.dataTable thead th,
+      table.dataTable tbody td {
+        text-align: left;
+        padding: 8px;
+      }
       nav {
         text-align: center;
       }
@@ -57,36 +62,36 @@
     <h1 id="greeting"></h1>
     <p>Here are your Current Tasks:</p>
     <div class="table-container">
-    <table id="taskTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>High Priority</th>
-          <th>Due Date</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% tasks.forEach(task => { %>
-        <tr>
-          <td>
-            <a href="/users/<%= user._id %>/tasks/<%= task._id %>"
-              ><%= task.name %>
-            </a>
-          </td>
-          <td><%= task.category %></td>
-          <td><%= task.isHighPriority ? 'Yes' : 'No' %></td>
-          <td>
-            <%= new Date(task.dueDate).toLocaleDateString('en-US', { month:
-            'short', day: 'numeric', timeZone: 'UTC' }) %>
-          </td>
-          <td><%= task.status %></td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
+      <table id="taskTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>High Priority</th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tasks.forEach(task => { %>
+          <tr>
+            <td>
+              <a href="/users/<%= user._id %>/tasks/<%= task._id %>"
+                ><%= task.name %>
+              </a>
+            </td>
+            <td><%= task.category %></td>
+            <td><%= task.isHighPriority ? 'Yes' : 'No' %></td>
+            <td>
+              <%= new Date(task.dueDate).toLocaleDateString('en-US', { month:
+              'short', day: 'numeric', timeZone: 'UTC' }) %>
+            </td>
+            <td><%= task.status %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
     <script>
       function greeting() {
         const greetingElement = document.getElementById("greeting");
