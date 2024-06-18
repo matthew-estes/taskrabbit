@@ -41,7 +41,7 @@ Task Rabbit is a task management application that allows a user to create, edit,
 Utilized previous labs and the internet (MDN, Stack Overflow, and ChatGPT) for guidance. 
 
 
-## Technologies Used:
+## Technologies Used
 Backend:
 - Node.js
 - Express.js
