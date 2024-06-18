@@ -7,7 +7,7 @@ Task Rabbit is a task management application that allows a user to create, edit,
 
 ## Features
 - User authentication (sign up, login, reset password)
-- Create, read, update, and delete tasksta
+- Create, read, update, and delete tasks
 - Task categorization and prioritization
 - Task status tracking
 - Responsive design
@@ -52,7 +52,7 @@ Frontend:
 - HTML
 - CSS
 - JavaScript
-- EJS (Embedded JavaScript templates)
+- EJS
 
 
 ## Next Steps
