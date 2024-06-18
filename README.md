@@ -4,11 +4,30 @@
 Task Rabbit is a task management application that allows a user to create, edit, view, and delete tasks. All tasks can be uniquely categorized, prioritized, and assigned a due date. 
 
 ## Features
-User authentication (sign up, login, reset password)
-Create, read, update, and delete tasks
-Task categorization and prioritization
-Task status tracking
-Responsive design
+- User authentication (sign up, login, reset password)
+- Create, read, update, and delete tasksta
+- Task categorization and prioritization
+- Task status tracking
+- Responsive design
+
+## Screenshots
+![Screenshot of home page with links to sign in or sign up](/screenshots/Home%20Page.png )
+
+![Screenshot of sign in page]( )
+
+![Screenshot of sign up page]( )
+
+![Screenshot of a summary of all task which can be can be sorted by clicking the columns or filtered by using the search bar]( )
+
+![Screenshot of the create a task page which displays each component of the task that can be filled out by the user: task name, a description, an assigned category, a checkbox for high priority tasks, a due date utlizing a dropdown calendar, and a status utlizing a dropdown with options of "Not Started", "In Progress", "Completed", or "On Hold". All fields are required except for the description and priority level]( )
+
+![Screenshot of a summary of an individual task]( )
+
+![Screenshot of a the edit page which displays each component of the task that can be edited: task name, a description, an assigned category, a checkbox for high priority tasks, a due date utlizing a dropdown calendar, and a status utlizing a dropdown with options of "Not Started", "In Progress", "Completed", or "On Hold"]( )
+
+![Screenshot of password reset page]( )
+
+
 
 ## Getting Started
 [Link to Application](https://taskrabbit-c1030f623734.herokuapp.com/)
