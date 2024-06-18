@@ -10,6 +10,11 @@ Task categorization and prioritization
 Task status tracking
 Responsive design
 
+## Getting Started
+[Link to Application](https://taskrabbit-c1030f623734.herokuapp.com/)
+
+[Planning Materials](https://trello.com/b/Ma5OfGaa/task-rabbit)
+
 ## Attributes
 Utilized previous labs and the internet (MDN, Stack Overflow, and ChatGPT) for guidance. 
 
