@@ -3,71 +3,139 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"
-    />
     <title>Tasks</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
     <style>
       body {
         font-family: "Roboto", Arial, sans-serif;
+        background-color: #1c1c1c;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
         display: flex;
         flex-direction: column;
-      }
-      h1,
-      p {
-        text-align: center;
-      }
-      h1 {
-        margin-top: 3%;
-      }
-      p {
-        margin: 0;
-      }
-      .table-container {
-        width: 90%;
-        margin: 0 auto;
-      }
-      table thead {
-        background-color: #0077cc;
-        text-align: center;
-        color: #fff;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
       }
 
-      table.dataTable thead th,
-      table.dataTable tbody td {
-        text-align: left;
-        padding: 8px;
-      }
       nav {
-        text-align: center;
+        position: absolute;
+        top: 20px;
+        right: 20px;
       }
 
       nav a {
-        padding: 1rem;
+        text-decoration: none;
+        color: orange;
+        margin-left: 20px;
+      }
+
+      h1 {
+        margin-top: 10rem;
+        margin-bottom: 5rem;
+        font-size: 2rem;
+        color: orange;
+        text-align: center;
+      }
+
+      p {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        color: #cccccc;
+        text-align: center;
+      }
+
+      .table-container {
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #2a2a2a;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        overflow-x: auto;
+      }
+
+      table.dataTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        color: #e0e0e0;
+      }
+
+      table.dataTable thead {
+        background-color: #333333;
+        color: #ffffff;
+      }
+
+      table.dataTable thead th {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #444444;
+      }
+
+      table.dataTable tbody tr:nth-child(odd) {
+        background-color: #676767;
+      }
+
+      table.dataTable tbody tr:nth-child(even) {
+        background-color: #3a3a3a;
+      }
+
+      table.dataTable tbody td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #444444;
+      }
+
+      table.dataTable tbody tr:hover {
+        background-color: #4a4a4a;
+      }
+      table a {
+        text-decoration: none;
+        color: orange;
+      }
+
+      .btn-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .btn-add-task {
+        background-color: #0077cc;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-decoration: none;
+      }
+
+      .btn-add-task:hover {
+        background-color: orange;
       }
     </style>
   </head>
+
   <body onload="greeting()">
     <nav>
-      <a href="/users/<%=user._id%>/tasks/new">Add a New Task</a>
       <a href="/auth/reset">Reset Your Password</a>
       <a href="/auth/sign-out">Sign Out</a>
     </nav>
     <h1 id="greeting"></h1>
-    <p>Here are your Current Tasks:</p>
     <div class="table-container">
-      <table id="taskTable">
+      <table id="taskTable" class="display nowrap">
         <thead>
           <tr>
             <th>Name</th>
             <th>Category</th>
-            <th>High Priority</th>
+            <th>Priority</th>
             <th>Due Date</th>
             <th>Status</th>
           </tr>
@@ -76,21 +144,22 @@
           <% tasks.forEach(task => { %>
           <tr>
             <td>
-              <a href="/users/<%= user._id %>/tasks/<%= task._id %>"
-                ><%= task.name %>
-              </a>
+              <a href="/users/<%= user._id %>/tasks/<%= task._id %>"><%= task.name %></a>
             </td>
             <td><%= task.category %></td>
-            <td><%= task.isHighPriority ? 'Yes' : 'No' %></td>
+            <td><%= task.priority %></td>
             <td>
-              <%= new Date(task.dueDate).toLocaleDateString('en-US', { month:
-              'short', day: 'numeric', timeZone: 'UTC' }) %>
+              <%= new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC'
+              }) %>
             </td>
             <td><%= task.status %></td>
           </tr>
           <% }) %>
         </tbody>
       </table>
+      <div class="btn-container">
+        <a href="/users/<%=user._id%>/tasks/new" class="btn-add-task">Create a Task</a>
+      </div>
     </div>
     <script>
       function greeting() {
@@ -105,18 +174,20 @@
         } else {
           greeting = "Good Evening";
         }
-        greetingElement.textContent = greeting + ", <%= user.username%>";
+        greetingElement.textContent = greeting + ", <%= user.username %>";
       }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      type="text/javascript"
-      charset="utf8"
-      src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"
-    ></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script>
       $(document).ready(function () {
-        $("#taskTable").DataTable();
+        $("#taskTable").DataTable({
+          paging: false,
+          searching: false,
+          info: false,
+          autoWidth: false,
+          responsive: true,
+        });
       });
     </script>
   </body>

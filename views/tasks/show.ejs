@@ -1,142 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= task.name %></title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    />
-    <style>
-      body {
-        font-family: "Roboto", Arial, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= task.name %></title>
+  <style>
+    body {
+      font-family: "Roboto", Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
 
-      nav a {
-        padding: 1rem;
-      }
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
-      .body {
-        font-family: "Roboto", Arial, sans-serif;
-        margin-top: 30px;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      h1 {
-        margin-top: 30px;
-      }
+    nav a {
+      text-decoration: none;
+      color: orange;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    .task-format {
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      padding: 25px;
+      width: 90%;
+      margin-top: 100px;
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .task-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .task-details h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: orange;
+      margin: 0;
+    }
+
+    .task-details p {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .task-description {
+      font-style: italic;
+      margin-bottom: 50px;
+    }
+
+    .additional-details {
+      margin-top: 15px;
+    }
+
+    .task-status {
+      margin-top: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .buttons button {
+      border: none;
+      font-size: 16px;
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+      padding: 12px 24px;
+      border-radius: 6px;
+      width: 150px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .buttons button:hover {
+      background-color: orange;
+    }
+
+    @media (max-width: 768px) {
       .task-format {
-        background-color: rgb(222, 219, 219);
-        border-radius: 10px;
-        padding: 20px;
-        margin-top: 20px;
-        width: 100%;
-        max-width: 600px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        width: 95%;
+        padding: 15px;
       }
 
-      .task-name {
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 30px;
-        margin: 0;
+      .task-details h1 {
+        font-size: 2rem;
       }
 
-      .task-details {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        margin: 0 auto 15px auto;
-      }
       .task-details p {
-        margin: 5px 0;
         font-size: 16px;
       }
 
-      .task-description {
-        margin-bottom: 20px;
-      }
-
-      .task-description label {
-        display: block;
-        font-size: 15px;
-        margin-bottom: 5px;
-      }
-
-      .task-description textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 15px;
-        border: 1px solid white;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      .buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 25px;
-      }
       .buttons button {
-        border: none;
         font-size: 15px;
-        background-color: #0077cc;
-        color: white;
-        cursor: pointer;
-        padding: 10px;
-        border-radius: 4px;
+        padding: 10px 20px;
       }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <a href="/users/<%=user._id%>/tasks">Your Tasks</a>
-      <a href="/auth/reset">Reset Your Password</a>
-      <a href="/auth/sign-out">Sign Out</a>
-    </nav>
-    <div class="body">
-      <h1 class="task-name">Task Details: <%= task.name %></h1>
-      <div class="task-format">
-        <div class="task-details">
-          <p class="task-category">Category: <%= task.category %></p>
-          <% if(task.isHighPriority){ %>
-          <p>High Priority: Yes</p>
-          <% } else { %>
-          <p>High Priority: No</p>
-          <% } %>
-          <p class="task-duedate">
-            Due Date: <%= new Date(task.dueDate).toLocaleDateString('en-US', {
-            month: 'short', day: 'numeric', timeZone: 'UTC' }) %>
-          </p>
-          <p class="task-status">Status: <%= task.status %></p>
-        </div>
-        <div class="task-description">
-          <label for="description">Description:</label>
-          <textarea name="description" id="description">
-<%= task.description ? task.description : '' %></textarea
-          >
-        </div>
-        <div class="buttons">
-          <button
-            onclick="window.location.href='/users/<%= user._id %>/tasks/<%= task._id %>/edit'"
-          >
-            Edit this Task
-          </button>
-          <form
-            action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE"
-            method="POST"
-          >
-            <button type="submit">Delete this Task</button>
-          </form>
-        </div>
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/users/<%= user._id %>/tasks">Your Tasks</a>
+    <a href="/auth/reset">Reset Your Password</a>
+    <a href="/auth/sign-out">Sign Out</a>
+  </nav>
+  <div class="task-format">
+    <div class="task-details">
+      <h1><%= task.name %></h1>
+      <p class="task-description"><%= task.description %></p>
+      <div class="additional-details">
+        <p class="task-category">Category: <%= task.category %></p>
+        <p class="task-priority">Priority: <%= task.priority %></p>
+        <p class="task-duedate">
+          Due Date: <%= new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }) %>
+        </p>
       </div>
+      <p class="task-status">Status: <%= task.status %></p>
     </div>
-  </body>
+    <div class="buttons">
+      <button onclick="window.location.href='/users/<%= user._id %>/tasks/<%= task._id %>/edit'">
+        Edit Task
+      </button>
+      <form action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Task</button>
+      </form>
+    </div>
+  </div>
+</body>
 </html>

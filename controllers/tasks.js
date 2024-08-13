@@ -1,89 +1,97 @@
 const User = require("../models/user");
 
-async function index(req, res) {
-  try {
-    const currentUser = await User.findById(req.session.user._id);
-    console.log(currentUser);
-    res.render("tasks/index.ejs", {
-      tasks: currentUser.tasks,
-    });
-  } catch (err) {
-    res.redirect("/");
-  }
-}
-
 function newTaskForm(req, res) {
   res.render("tasks/new.ejs");
 }
 
-async function create(req, res) {
+async function index(req, res) {
   try {
-    console.log(req.session.user);
-    const foundUser = await User.findById(req.session.user._id);
-    req.body.isHighPriority = req.body.isHighPriority === "on";
-    foundUser.tasks.push(req.body);
-    await foundUser.save();
-    res.redirect(`/users/${foundUser._id}/tasks`);
-  } catch (error) {
-    console.log(error);
+    const user = await User.findById(req.session.user._id);
+    res.render("tasks/index.ejs", {
+      tasks: user.tasks,
+    });
+  } catch (err) {
+    console.error("Error fetching tasks:", err);
     res.redirect("/");
   }
 }
 
 async function show(req, res) {
   try {
-    const currentUser = await User.findById(req.session.user._id);
-    const task = currentUser.tasks.id(req.params.taskId);
+    const user = await User.findById(req.session.user._id);
+    const task = user.tasks.id(req.params.taskId);
     res.render("tasks/show.ejs", { task });
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching task:", error);
     res.redirect("/");
   }
 }
 
-async function deleteTask(req, res) {
+async function create(req, res) {
   try {
-    const currentUser = await User.findById(req.session.user._id);
-    currentUser.tasks.id(req.params.taskId).deleteOne();
-    await currentUser.save();
-    res.redirect(`/users/${currentUser._id}/tasks`);
+    const foundUser = await User.findById(req.session.user._id);
+
+    const newTask = {
+      name: req.body.name,
+      description: req.body.description || "",
+      category: req.body.category,
+      priority: req.body.priority || "Low",
+      dueDate: req.body.dueDate,
+      status: req.body.status,
+    };
+
+    foundUser.tasks.push(newTask);
+    await foundUser.save();
+
+    res.redirect(`/users/${foundUser._id}/tasks`);
   } catch (error) {
-    console.log(error);
+    console.error("Error creating task:", error);
     res.redirect("/");
   }
 }
 
 async function edit(req, res) {
   try {
-    const currentUser = await User.findById(req.session.user._id);
-    const task = currentUser.tasks.id(req.params.taskId);
+    const user = await User.findById(req.session.user._id);
+    const task = user.tasks.id(req.params.taskId);
     res.render("tasks/edit.ejs", { task });
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching task for edit:", error);
     res.redirect("/");
   }
 }
 
 async function update(req, res) {
   try {
-    const currentUser = await User.findById(req.session.user._id);
-    const task = currentUser.tasks.id(req.params.taskId);
-    req.body.isHighPriority = req.body.isHighPriority === "on";
+    const user = await User.findById(req.session.user._id);
+    const task = user.tasks.id(req.params.taskId);
     task.set(req.body);
-    await currentUser.save();
-    res.redirect(`/users/${currentUser._id}/tasks`);
+    await user.save();
+    res.redirect(`/users/${user_id}/tasks/${req.params.taskId}`);
+  } catch (err) {
+    console.log(err);
+    res.redirect("/");
+  }
+}
+
+async function deleteTask(req, res) {
+  try {
+    const user = await User.findById(req.session.user._id);
+    user.tasks.pull({ _id: req.params.taskId });
+    await user.save();
+    res.redirect(`/users/${user._id}/tasks`);
   } catch (error) {
-    console.log(error);
+    console.error("Error deleting task:", error);
     res.redirect("/");
   }
 }
 
 module.exports = {
-  index,
   new: newTaskForm,
-  create,
+  index,
   show,
-  delete: deleteTask,
+  create,
   edit,
   update,
+  delete: deleteTask,
 };
