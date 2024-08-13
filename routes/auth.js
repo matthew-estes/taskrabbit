@@ -9,15 +9,6 @@ router.get("/sign-up", (req, res) => {
   res.render("auth/sign-up.ejs");
 });
 
-router.get("/sign-in", (req, res) => {
-  res.render("auth/sign-in.ejs");
-});
-
-router.get("/sign-out", (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
-});
-
 router.post("/sign-up", async (req, res) => {
   try {
     const userInDatabase = await User.findOne({ username: req.body.username });
@@ -32,13 +23,22 @@ router.post("/sign-up", async (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
 
-    await User.create(req.body);
+    const newUser = await User.create(req.body);
 
-    res.redirect("/auth/sign-in");
+    req.session.user = {
+      username: newUser.username,
+      _id: newUser._id,
+    };
+
+    res.redirect(`/users/${newUser._id}/tasks`);
   } catch (error) {
     console.log(error);
     res.redirect("/");
   }
+});
+
+router.get("/sign-in", (req, res) => {
+  res.render("auth/sign-in.ejs");
 });
 
 router.post("/sign-in", async (req, res) => {
@@ -48,10 +48,7 @@ router.post("/sign-in", async (req, res) => {
       return res.send("Login failed. Please try again.");
     }
 
-    const validPassword = bcrypt.compareSync(
-      req.body.password,
-      userInDatabase.password
-    );
+    const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password);
     if (!validPassword) {
       return res.send("Login failed. Please try again.");
     }
@@ -68,26 +65,10 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
-async function showPwReset(req, res) {
-  res.render("auth/pwreset");
-}
-
-async function resetPw(req, res) {
-  try {
-    const { password, confirmPassword } = req.body;
-    if (req.body.password !== req.body.confirmPassword) {
-      return res.send("Password and Confirm Password must match");
-    }
-    const user = await User.findById(req.session.user._id);
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-    req.body.password = hashedPassword;
-    await User.save();
-    res.redirect("/auth/sign-in");
-  } catch (error) {
-    console.log(error);
-    return res.send("Reset failed. Please try again.");
-  }
-}
+router.get("/sign-out", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
 
 router.get("/reset", isSignedIn, authController.showPwReset);
 router.post("/reset", isSignedIn, authController.resetPw);
