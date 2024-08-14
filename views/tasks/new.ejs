@@ -31,10 +31,23 @@
       }
 
       h1 {
-        margin-top: 5rem;
+        margin-top: 10rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 2rem;
         color: orange;
         text-align: center;
+      }
+
+      .logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 4rem 0 1rem;
+      }
+
+      .logo img {
+        max-width: 150px;
+        height: auto;
       }
 
       form {
@@ -78,16 +91,14 @@
       }
 
       button {
-        border: none;
-        font-size: 16px;
         background-color: #0077cc;
-        color: white;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
         cursor: pointer;
-        padding: 12px;
-        margin-top: 15px;
-        border-radius: 4px;
-        align-self: center;
-        width: 50%;
+        font-size: 1rem;
+        text-decoration: none;
       }
 
       button:hover {
@@ -128,8 +139,11 @@
 
       <label for="description">Description:</label>
       <textarea name="description" id="description" rows="4"></textarea>
-
-      <button type="submit">Submit</button>
     </form>
+    <div class="logo">
+      
+      <img src="/views/images/taskrabbitlogo.png" alt="Rabbit Logo" />
+      <button type="submit">Submit</button>
+    </div>
   </body>
 </html>

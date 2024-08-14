@@ -37,17 +37,22 @@
 
       h1 {
         margin-top: 10rem;
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;;
         font-size: 2rem;
         color: orange;
         text-align: center;
       }
 
-      p {
-        margin-bottom: 2rem;
-        font-size: 1.2rem;
-        color: #cccccc;
-        text-align: center;
+      .logo {
+        display: flex;
+        justify-content: center;
+        margin: 8rem 0 1rem;
+      }
+
+      .logo img {
+        max-width: 150px;
+        height: auto;
       }
 
       .table-container {
@@ -76,6 +81,13 @@
       table.dataTable thead th {
         text-align: left;
         padding: 12px;
+        background-color: #0077cc;
+        border-bottom: 1px solid #444444;
+      }
+
+      table.dataTable thead th {
+        text-align: left;
+        padding: 12px;
         border-bottom: 1px solid #444444;
       }
 
@@ -96,6 +108,7 @@
       table.dataTable tbody tr:hover {
         background-color: #4a4a4a;
       }
+
       table a {
         text-decoration: none;
         color: orange;
@@ -103,7 +116,7 @@
 
       .btn-container {
         text-align: center;
-        margin-top: 20px;
+        margin-bottom: 2rem;
       }
 
       .btn-add-task {
@@ -157,9 +170,12 @@
           <% }) %>
         </tbody>
       </table>
-      <div class="btn-container">
-        <a href="/users/<%=user._id%>/tasks/new" class="btn-add-task">Create a Task</a>
-      </div>
+    </div>
+    <div class="logo">
+      <img src="/views/images/taskrabbitlogo.png" alt="Rabbit Logo" />
+    </div>
+    <div class="btn-container">
+      <a href="/users/<%=user._id%>/tasks/new" class="btn-add-task">Create a Task</a>
     </div>
     <script>
       function greeting() {

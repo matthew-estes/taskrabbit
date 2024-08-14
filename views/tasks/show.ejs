@@ -31,12 +31,24 @@
       font-size: 16px;
     }
 
+    .logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 4rem 0 1rem;
+      }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+      }
+
     .task-format {
       background-color: #2a2a2a;
       border-radius: 12px;
       padding: 25px;
       width: 90%;
-      margin-top: 100px;
+      margin-top: 10rem;
       max-width: 600px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
       display: flex;
@@ -61,21 +73,16 @@
     }
 
     .task-details p {
-      font-size: 18px;
+      font-size: 1.2rem;
       margin: 0;
     }
 
     .task-description {
       font-style: italic;
-      margin-bottom: 50px;
     }
 
-    .additional-details {
-      margin-top: 15px;
-    }
-
-    .task-status {
-      margin-top: 20px;
+    .additional-details p {
+    margin-top: 1rem;
     }
 
     .buttons {
@@ -142,14 +149,17 @@
       </div>
       <p class="task-status">Status: <%= task.status %></p>
     </div>
-    <div class="buttons">
-      <button onclick="window.location.href='/users/<%= user._id %>/tasks/<%= task._id %>/edit'">
-        Edit Task
-      </button>
-      <form action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Task</button>
       </form>
     </div>
   </div>
+  <div class="logo">
+    <img src="/views/images/taskrabbitlogo.png" alt="Rabbit Logo" />
+  </div>
+  <div class="buttons">
+    <button onclick="window.location.href='/users/<%= user._id %>/tasks/<%= task._id %>/edit'">
+      Edit Task
+    </button>
+    <form action="/users/<%= user._id %>/tasks/<%= task._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Task</button>
 </body>
 </html>

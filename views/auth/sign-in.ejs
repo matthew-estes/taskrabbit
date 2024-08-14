@@ -22,15 +22,28 @@
         min-height: 100vh;
       }
 
+     
+      nav {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: orange;
+        margin-left: 20px;
+      }
+
       .logo {
         margin-bottom: 2rem;
-        margin-top: -15rem;
       }
 
       .logo img {
-        max-width: 200px;
+        max-width: 300px;
         height: auto;
       }
+
 
       form {
         background-color: #2a2a2a;
@@ -72,7 +85,7 @@
       }
 
       button:hover {
-        background-color: #005fa3;
+        background-color: orange;
       }
 
       .sign-up {
@@ -92,6 +105,11 @@
     </style>
   </head>
   <body>
+    <nav>
+      <a href="/">TaskRabbit</a>
+      <a href="/auth/sign-in">Sign In</a>
+      <a href="/auth/sign-up">Sign Up</a>
+    </nav>
     <div class="logo">
       <img src="/views/images/taskrabbitlogo.png" alt="Rabbit Logo" id="logo" />
     </div>
